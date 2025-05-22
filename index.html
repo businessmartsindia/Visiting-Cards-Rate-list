@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Marts - Marketing Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --whatsapp-color: #25D366;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(to right, #fff 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin-top: 10px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        /* Modern Login Container */
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .login-container h2 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-size: 24px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .login-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .form-group i {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #aaa;
+        }
+        
+        /* Smart Login Button */
+        .login-btn {
+            background: linear-gradient(to right, var(--primary-color) 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #2980b9 0%, var(--primary-color) 100%);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .content {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .category h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 26px;
+            margin-top: 0;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            font-size: 28px;
+            color: var(--secondary-color);
+            margin: 30px 0;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .welcome-message::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Product Items Styling */
+        .product {
+            margin: 20px 0;
+            padding: 0;
+        }
+        
+        .product h3 {
+            color: var(--primary-color);
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .product-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .product-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-right: 15px;
+            color: var(--dark-color);
+            font-size: 16px;
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .product-controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .qty-input {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .qty-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .rate-info {
+            font-style: italic;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .double-side {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .double-side input {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+        
+        .total-price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-left: 15px;
+            font-size: 18px;
+            min-width: 100px;
+            text-align: right;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Validation styles */
+        .required-field::after {
+            content: " *";
+            color: var(--accent-color);
+        }
+        
+        .error-message {
+            color: var(--accent-color);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.error {
+            border-color: var(--accent-color) !important;
+        }
+        
+        .requirements-note {
+            font-size: 13px;
+            margin-top: 15px;
+            color: #777;
+            text-align: center;
+        }
+        
+        /* Order Submission Section */
+        .order-submission {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .order-submission h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 26px;
+            margin-top: 0;
+        }
+        
+        .submission-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .email-btn, .whatsapp-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+        }
+        
+        .email-btn {
+            background: linear-gradient(to right, var(--primary-color) 0%, #2980b9 100%);
+        }
+        
+        .email-btn:hover {
+            background: linear-gradient(to right, #2980b9 0%, var(--primary-color) 100%);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(to right, var(--whatsapp-color) 0%, #128C7E 100%);
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(to right, #128C7E 0%, var(--whatsapp-color) 100%);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        
+        .design-note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            font-size: 14px;
+            color: var(--dark-color);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .login-container {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .product-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .product-controls {
+                width: 100%;
+            }
+            
+            .submission-buttons {
+                flex-direction: column;
+            }
+            
+            .email-btn, .whatsapp-btn {
+                width: 100%;
+            }
+        }
+        
+        /* Floating labels effect */
+        .form-group.focused label {
+            color: var(--primary-color);
+        }
+        
+        /* Animated checkbox */
+        .double-side-check {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .double-side-check::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: all 0.2s;
+        }
+        
+        .double-side-check:checked::before {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .double-side-check:checked::after {
+            content: '✓';
+            position: absolute;
+            left: 4px;
+            top: 2px;
+            color: white;
+            font-size: 12px;
+        }
+
+        /* User greeting */
+        .user-greeting {
+            text-align: center;
+            font-size: 20px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .user-greeting span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <div>
+                <div class="company-name">Business Marts</div>
+                <img src="https://www.dropbox.com/scl/fi/siqzhazsevewbyczv6aoi/logo-1500-x-500-pixcel.png?rlkey=n21t4iy8dcqp9lkyfojnzyapn&st=9t8i2d0n&dl=1" 
+                     alt="Business Marts Logo" class="logo"
+                     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x100?text=Business+Marts+Logo';">
+            </div>
+        </div>
+        <div class="login-container" id="loginContainer">
+            <h2>Create Account <i class="fas fa-user-plus"></i></h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="fullName" class="required-field">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    <i class="fas fa-user"></i>
+                    <div class="error-message" id="nameError">Please enter your full name</div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="required-field">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <i class="fas fa-envelope"></i>
+                    <div class="error-message" id="emailError">Please enter a valid email address</div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile" class="required-field">Mobile Number</label>
+                    <input type="tel" id="mobile" placeholder="Enter your mobile number" required>
+                    <i class="fas fa-phone"></i>
+                    <div class="error-message" id="mobileError">Please enter your mobile number</div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <div class="requirements-note">
+                    <span style="color: var(--accent-color);">*</span> indicates required fields
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="content hidden" id="mainContent">
+        <div class="welcome-message">Welcome to Business Marts!</div>
+        <div class="user-greeting">Hello, <span id="userNameDisplay"></span>! Please select products below:</div>
+        
+        <div class="category">
+            <h2>Offline Marketing Products</h2>
+            
+            <div class="product">
+                <h3>Business Cards</h3>
+                <span class="rate-info">Minimum quantity: 1000 (or 0 if not needed)</span>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">1. Without lamination Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="270">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds1" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds1">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">2. Gloss Coated Small Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="300">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds2" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds2">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">3. Without Lamination Small Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="250">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds3" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds3">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">4. Gloss Coated Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="330">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds4" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds4">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">5. Gloss Laminated Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="350">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds5" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds5">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">6. Matt Lamination Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="650">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds6" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds6">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+                
+                <div class="product-item">
+                    <div class="product-header">
+                        <span class="product-title">7. Matt lamination UV coated Cards</span>
+                        <div class="product-controls">
+                            <span>Quantity: </span>
+                            <input type="number" class="qty-input" min="0" step="1000" value="0" data-base-rate="1100">
+                            <span class="total-price">0 Rs</span>
+                        </div>
+                    </div>
+                    <div class="double-side">
+                        <input type="checkbox" id="ds7" class="double-side-check" data-additional-rate="100"> 
+                        <label for="ds7">Double side printing (+100 Rs per 1000)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Submission Section -->
+        <div class="order-submission">
+            <h2>Submit Your Order</h2>
+            <p>Please submit your order details using one of the following methods:</p>
+            
+            <div class="submission-buttons">
+                <button class="email-btn" id="emailOrderBtn">
+                    <i class="fas fa-envelope"></i> Email Order
+                </button>
+                <button class="whatsapp-btn" id="whatsappOrderBtn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Order
+                </button>
+            </div>
+            
+            <div class="design-note">
+                <strong>Note:</strong> Please send your design files to <a href="mailto:design@businessmarts.site">design@businessmarts.site</a> 
+                before submitting your order. Include your name and contact information in the email.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store user data
+        let userData = {
+            fullName: '',
+            email: '',
+            mobile: ''
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset error states
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('error'));
+            
+            // Get form values
+            userData.fullName = document.getElementById('fullName').value.trim();
+            userData.email = document.getElementById('email').value.trim();
+            userData.mobile = document.getElementById('mobile').value.trim();
+            
+            // Validate fields
+            let isValid = true;
+            
+            if (!userData.fullName) {
+                document.getElementById('nameError').style.display = 'block';
+                document.getElementById('fullName').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!userData.email || !/^\S+@\S+\.\S+$/.test(userData.email)) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('email').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!userData.mobile) {
+                document.getElementById('mobileError').style.display = 'block';
+                document.getElementById('mobile').classList.add('error');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Here you would typically send this data to your server
+                console.log('Account details to be sent to info@businessmarts.site:', userData);
+                
+                // Show success animation
+                const loginBtn = document.querySelector('.login-btn');
+                loginBtn.innerHTML = '<i class="fas fa-check"></i> Account Created!';
+                loginBtn.style.background = 'linear-gradient(to right, var(--success-color), #27ae60)';
+                
+                // Display user name on order page
+                document.getElementById('userNameDisplay').textContent = userData.fullName;
+                
+                // Hide login and show main content after delay
+                setTimeout(() => {
+                    document.getElementById('loginContainer').classList.add('hidden');
+                    document.getElementById('mainContent').classList.remove('hidden');
+                }, 1500);
+            }
+        });
+
+        // Add real-time validation
+        document.getElementById('fullName').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('error');
+                document.getElementById('nameError').style.display = 'none';
+            }
+        });
+        
+        document.getElementById('email').addEventListener('input', function() {
+            if (this.value.trim() && /^\S+@\S+\.\S+$/.test(this.value)) {
+                this.classList.remove('error');
+                document.getElementById('emailError').style.display = 'none';
+            }
+        });
+        
+        document.getElementById('mobile').addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.classList.remove('error');
+                document.getElementById('mobileError').style.display = 'none';
+            }
+        });
+        
+        // Add focus effects
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+        
+        // Function to calculate and update prices
+        function updatePrices() {
+            document.querySelectorAll('.product-item').forEach(item => {
+                const qtyInput = item.querySelector('.qty-input');
+                const doubleSideCheck = item.querySelector('.double-side-check');
+                const totalPriceElement = item.querySelector('.total-price');
+                
+                // Ensure quantity is a multiple of 1000
+                let quantity = parseInt(qtyInput.value);
+                if (quantity > 0 && quantity % 1000 !== 0) {
+                    quantity = Math.round(quantity / 1000) * 1000;
+                    qtyInput.value = quantity;
+                }
+                
+                const baseRate = parseFloat(qtyInput.dataset.baseRate);
+                const additionalRate = doubleSideCheck.checked ? parseFloat(doubleSideCheck.dataset.additionalRate) : 0;
+                const quantityInThousands = quantity / 1000; // Convert to units of 1000
+                
+                const totalPrice = quantity > 0 ? (baseRate + additionalRate) * quantityInThousands : 0;
+                totalPriceElement.textContent = Math.round(totalPrice) + ' Rs';
+            });
+        }
+        
+        // Add event listeners for quantity changes and double-side checkbox
+        document.querySelectorAll('.qty-input, .double-side-check').forEach(element => {
+            element.addEventListener('change', updatePrices);
+            element.addEventListener('input', updatePrices);
+        });
+        
+        // Initialize prices on page load
+        document.addEventListener('DOMContentLoaded', updatePrices);
+
+        // Email Order Button - Fixed and Tested Version
+        document.getElementById('emailOrderBtn').addEventListener('click', function() {
+            // Collect order details
+            let orderDetails = "=== ORDER DETAILS ===\n\n";
+            let hasOrder = false;
+            let totalOrderValue = 0;
+            
+            document.querySelectorAll('.product-item').forEach((item, index) => {
+                const title = item.querySelector('.product-title').textContent.replace(/^\d+\.\s*/, ''); // Remove numbering
+                const qty = parseInt(item.querySelector('.qty-input').value);
+                const doubleSide = item.querySelector('.double-side-check').checked ? 'Yes' : 'No';
+                const priceText = item.querySelector('.total-price').textContent;
+                const price = parseFloat(priceText);
+                
+                if (qty > 0) {
+                    hasOrder = true;
+                    orderDetails += `PRODUCT: ${title}\n`;
+                    orderDetails += `QUANTITY: ${qty}\n`;
+                    orderDetails += `DOUBLE SIDE: ${doubleSide}\n`;
+                    orderDetails += `PRICE: ${priceText}\n\n`;
+                    totalOrderValue += price;
+                }
+            });
+            
+            if (!hasOrder) {
+                alert('Please add at least one product to your order before submitting.');
+                return;
+            }
+            
+            // Add total order value
+            orderDetails += `=== ORDER SUMMARY ===\n`;
+            orderDetails += `TOTAL ORDER VALUE: ${totalOrderValue} Rs\n\n`;
+            
+            // Customer information
+            const customerInfo = `=== CUSTOMER INFORMATION ===\n\n` +
+                                `NAME: ${userData.fullName}\n` +
+                                `EMAIL: ${userData.email}\n` +
+                                `MOBILE: ${userData.mobile}\n\n`;
+            
+            // Create mailto link with proper encoding
+            const email = 'info@businessmarts.site';
+            const subject = `New Order from ${userData.fullName}`;
+            const body = customerInfo + orderDetails;
+            
+            // Properly encode all components
+            const encodedSubject = encodeURIComponent(subject).replace(/%20/g, '+');
+            const encodedBody = encodeURIComponent(body)
+                .replace(/%20/g, '+')
+                .replace(/%0A/g, '%0D%0A'); // Ensure proper line breaks
+            
+            // Construct mailto link with all parameters
+            const mailtoLink = `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
+            
+            // Open email client in new tab as fallback
+            const mailWindow = window.open(mailtoLink, '_blank');
+            
+            // Fallback if window.open is blocked
+            if (!mailWindow) {
+                window.location.href = mailtoLink;
+            }
+        });
+
+        // WhatsApp Order Button
+        document.getElementById('whatsappOrderBtn').addEventListener('click', function() {
+            // Collect order details
+            let orderDetails = "=== ORDER DETAILS ===\n\n";
+            let hasOrder = false;
+            let totalOrderValue = 0;
+            
+            document.querySelectorAll('.product-item').forEach((item, index) => {
+                const title = item.querySelector('.product-title').textContent.replace(/^\d+\.\s*/, '');
+                const qty = parseInt(item.querySelector('.qty-input').value);
+                const doubleSide = item.querySelector('.double-side-check').checked ? 'Yes' : 'No';
+                const priceText = item.querySelector('.total-price').textContent;
+                const price = parseFloat(priceText);
+                
+                if (qty > 0) {
+                    hasOrder = true;
+                    orderDetails += `PRODUCT: ${title}\n`;
+                    orderDetails += `QUANTITY: ${qty}\n`;
+                    orderDetails += `DOUBLE SIDE: ${doubleSide}\n`;
+                    orderDetails += `PRICE: ${priceText}\n\n`;
+                    totalOrderValue += price;
+                }
+            });
+            
+            if (!hasOrder) {
+                alert('Please add at least one product to your order before submitting.');
+                return;
+            }
+            
+            // Add total order value
+            orderDetails += `=== ORDER SUMMARY ===\n`;
+            orderDetails += `TOTAL ORDER VALUE: ${totalOrderValue} Rs\n\n`;
+            
+            // Customer information
+            const customerInfo = `=== CUSTOMER INFORMATION ===\n\n` +
+                                `NAME: ${userData.fullName}\n` +
+                                `EMAIL: ${userData.email}\n` +
+                                `MOBILE: ${userData.mobile}\n\n`;
+            
+            // Create WhatsApp message
+            const message = `NEW ORDER FROM BUSINESS MARTS\n\n${customerInfo}${orderDetails}`;
+            const whatsappLink = `https://wa.me/9599270456?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappLink, '_blank');
+        });
+    </script>
+</body>
+</html>
